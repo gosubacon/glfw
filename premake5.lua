@@ -2,8 +2,8 @@ project "GLFW"
   kind "StaticLib"
   language "C"
 
-  targetdir ("bin/" .. outputdir .. "/%(prj.name)")
-  objdir ("bin-int/" .. outputdir .. "/%(prj.name)")
+  targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+  objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
   files
   {
@@ -14,12 +14,12 @@ project "GLFW"
     "src/init.c",
     "src/input.c",
     "src/monitor.c",
-    "src/vilkan.c",
+    "src/vulkan.c",
     "src/window.c"
   }
 
   filter "system:windows"
-    buildoptions {"-std=c11", "-lgdi32"}
+    --buildoptions {"-std=c11", "-lgdi32"}
     systemversion "latest"
     staticruntime "On"
 
@@ -38,8 +38,8 @@ project "GLFW"
 
     defines
     {
-      "_GFLW_WIN32",
-      "CRT_SECURE_NO_WARNINGS"
+      "_GLFW_WIN32",
+      "_CRT_SECURE_NO_WARNINGS"
     }
 
     filter { "system:windows", "configurations:Release"}
